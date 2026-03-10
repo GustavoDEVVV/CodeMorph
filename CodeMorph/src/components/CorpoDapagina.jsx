@@ -39,7 +39,8 @@ export function CorpoDaPagina({ onConvert }) {
             })
         })
         const data = await response.json()
-        onConvert(code, data.result)
+        onConvert(code, data.convertedCode)
+        console.log("Resposta da API:", data)
     }
 
     useScrollAnimation();
@@ -47,7 +48,7 @@ export function CorpoDaPagina({ onConvert }) {
     const [code, setCode] = useState("");
     const [framework, setFramework] = useState("react");
 
-    return ( 
+    return (
 
         <div className="pagina" >
 
