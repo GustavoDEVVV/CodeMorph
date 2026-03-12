@@ -130,3 +130,9 @@ pre{
     display:flex;
     gap:6rem;
 }
+
+@media (max-width: 880px){
+.resultadoHeader h1{
+    font-size:1.5rem;
+}
+}
