@@ -9,6 +9,9 @@ from flask_cors import CORS
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+for m in genai.list_models():
+    if "generateContent" in m.supported_generation_methods:
+        print(m.name)
 
 app = Flask(__name__)
 CORS(app)
@@ -24,24 +27,49 @@ def converter_html(html, framework):
 
 # Aqui a gente passa uma logica pra o modelo saber como se comportar e o que fazer
     prompt = f"""
-    Converta o seguinte código HTML para {framework}.
+    Você é um engenheiro frontend sênior.
 
-    Regras:
-    - Preserve o JavaScript se existir
-    - Use boas práticas do {framework}
+    Analise o HTML fornecido e converta para {framework}.
+
+    Etapas:
+
+    1. Analise a estrutura do HTML
+    2. Detecte blocos estruturais como header, nav, section, card e footer
+    3. Identifique partes que podem virar componentes reutilizáveis
+    4. Gere o código no framework solicitado
+
+    Regras importantes:
+
     - Retorne apenas o código
-    - Não explique nada
+    - Não escreva explicações fora do código
+    - Use comentários apenas quando necessário
+    - Evite comentários redundantes
+    - Prefira código limpo e legível
+    - Use boas práticas do framework
+    - Preserve qualquer JavaScript existente
+    - Utilize nomes claros para componentes
 
-    HTML:
+    Comentários permitidos:
+    - JSDoc no topo do componente
+    - comentários curtos explicando decisões estruturais
+
+    HTML de entrada:
     {html}
     """
 
-    model = genai.GenerativeModel("gemini-2.5-flash")
-    resposta = model.generate_content(prompt)
+    try:
+        model = genai.GenerativeModel("gemini-2.5-flash")
+        resposta = model.generate_content(prompt)
+    except Exception as e:
+        print("Erro ao chamar Gemini:", e)
+        return "Erro ao gerar código com IA."
 
     codigo = resposta.text
+
+    # limpar markdown
     codigo = codigo.replace("```jsx", "")
-    codigo = codigo.replace("```javascript", "")
+    codigo = codigo.replace("```vue", "")
+    codigo = codigo.replace("```typescript", "")
     codigo = codigo.replace("```", "")
 
     # Retorna a nossa resposta 
