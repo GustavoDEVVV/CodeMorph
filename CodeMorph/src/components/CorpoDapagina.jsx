@@ -25,22 +25,39 @@ export function useScrollAnimation() {
     }, []);
 }
 
-export function CorpoDaPagina({ onConvert }) {
+export function CorpoDaPagina({ onConvert, setLoading }) {
 
     async function converter() {
-        const response = await fetch("http://localhost:5000/convert", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                code: code,
-                framework: framework
+
+        try {
+
+            setLoading(true)
+
+            const response = await fetch("http://localhost:5000/convert", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    code: code,
+                    framework: framework
+                })
             })
-        })
-        const data = await response.json()
-        onConvert(code, data.convertedCode)
-        console.log("Resposta da API:", data)
+
+            const data = await response.json()
+
+            onConvert(code, data.convertedCode)
+
+        } catch (error) {
+
+            console.error("Erro na conversão:", error)
+
+        } finally {
+
+            setLoading(false)
+
+        }
+
     }
 
     useScrollAnimation();

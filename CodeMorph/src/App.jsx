@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { CorpoDaPagina } from "./components/CorpoDapagina"
 import { Result } from "./components/Result"
+import LoadingOverlay from "./components/LoadingOverlay"
 
 function App() {
 
@@ -9,11 +10,14 @@ function App() {
   const [codigoOriginal, setCodigoOriginal] = useState("")
   const [codigoConvertido, setCodigoConvertido] = useState("")
 
+  const [loading, setLoading] = useState(false)
+
   function mostrarResultado(original, novo) {
 
     setCodigoOriginal(original)
     setCodigoConvertido(novo)
 
+    setLoading(false)
     setPagina("resultado")
 
   }
@@ -28,8 +32,13 @@ function App() {
 
     <>
 
+      {loading && <LoadingOverlay />}
+
       {pagina === "home" && (
-        <CorpoDaPagina onConvert={mostrarResultado} />
+        <CorpoDaPagina 
+          onConvert={mostrarResultado}
+          setLoading={setLoading}
+        />
       )}
 
       {pagina === "resultado" && (
