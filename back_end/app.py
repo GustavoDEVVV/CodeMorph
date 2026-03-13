@@ -19,7 +19,7 @@ load_dotenv()
 def home():
     return "API CodeMorph rodando"
 
-# função que puxa a API do Gemini pra fazer a conversão do HTML para o framework escolhido
+#função que puxa a API do Gemini pra fazer a conversão do HTML para o framework escolhido
 def converter_html(html, framework):
 
 # Aqui a gente passa uma logica pra o modelo saber como se comportar e o que fazer
