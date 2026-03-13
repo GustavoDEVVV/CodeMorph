@@ -92,15 +92,23 @@ export function Result({ originalCode, convertedCode, voltar }) {
 
                     <div>
                         <h4>recursos</h4>
+                        <a href="https://www.linkedin.com/pulse/codemorph-gustavo-domingues-da-silva-qycie">
                         <p>Documentação</p>
+                        </a>
                         <p>Termos e Condições</p>
                     </div>
 
                     <div>
                         <h4>Contato</h4>
+                        <a href="https://www.instagram.com/gusta_dev0?igsh=bXhoMmd2dWQ4ZTht">
                         <p>Instagram</p>
+                        </a>
+                        <a href="www.linkedin.com/in/gustavo-domingues-da-silva-47bbb221b">
                         <p>Linkedin</p>
+                        </a>
+                        <a href="https://github.com/GustavoDEVVV/CodeMorph">
                         <p>Github</p>
+                        </a>
                     </div>
 
                 </div>
