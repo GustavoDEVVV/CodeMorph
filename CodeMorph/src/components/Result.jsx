@@ -13,10 +13,10 @@ export function Result({ originalCode, convertedCode, voltar }) {
                 <div className="logo">&lt;/&gt; CodeMorph</div>
 
                 <div className="menu">
-                    <a href="./CorpoDapagina.jsx">Home</a>
-                    <a href="#">Sobre</a>
+                    <a href="/">Home</a>
+                    <a href="/">Sobre</a>
                 </div>
-                <a href="#">
+                <a href="/">
                     <button className="btnContato">Contato</button>
                 </a>
             </nav>
