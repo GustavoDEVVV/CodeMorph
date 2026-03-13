@@ -76,9 +76,9 @@ export function CorpoDaPagina({ onConvert, setLoading }) {
 
                 <div className="menu">
                     <a href="#">Home</a>
-                    <a href="#">Sobre</a>
+                    <a href="#sobre">Sobre</a>
                 </div>
-                <a href="#">
+                <a href="#footer">
                     <button className="btnContato">Contato</button>
                 </a>
             </nav>
@@ -145,7 +145,7 @@ export function CorpoDaPagina({ onConvert, setLoading }) {
 
             {/* SOBRE */}
 
-            <section className="sobre scroll-animation">
+            <section className="sobre scroll-animation" id="sobre">
 
                 <h2>
                     Qual o proposito do <br /><span>CodeMorph?</span>
@@ -191,7 +191,7 @@ export function CorpoDaPagina({ onConvert, setLoading }) {
 
             {/* FOOTER */}
 
-            <footer className="footer scroll-animation">
+            <footer className="footer scroll-animation" id="footer">
 
                 <div className="footerLeft">
 
